@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -7,6 +7,7 @@
 
   <title>bpmn-js seed</title>
   <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+  <!--<link href="lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />-->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
   <style type="text/css">
     html, body, #canvas {
@@ -17,7 +18,7 @@
     #toolbar {
       position: fixed;
       top: 10px;
-      right: 490px;
+      right: 370px;
     }
 
     #contextPad {
@@ -26,46 +27,101 @@
             top: 0;
             bottom: 0;
             right: 0;
-            width: 480px;
+            width: 360px;
             z-index: 1000;
             border-left: 1px solid #ccc;
             overflow: auto;
             padding: 10px;
         }
 
+      .form-group {
+          margin-bottom:10px;
+      } 
+      
+      .control-label {
+          font-size: 12px;
+      }
+
+      /*.control-label > input[type=checkbox] {
+          margin-top: 10px;
+      }*/
+
+      /*.form-group-sm .form-control {
+          border-radius: 0px;
+      }*/
+
+      .nav-tabs {
+          margin-bottom:10px;
+      }
+
+      .nav-tabs > li > a {
+          padding: 5px 10px;
+          /*border-radius: 0px;*/
+          font-size:12px;
+      }
+
         #canvas {
             /* padding-left:68px; */
-            padding-right:490px;
+            padding-right:370px;
         }
+
+      #entry_executionListeners {
+          height:180px;
+      }
   </style>
   <link rel="stylesheet" href="lib/bpmn-js/dist/assets/diagram-js.css">
   <link rel="stylesheet" href="lib/bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css">
 </head>
 <body>
-  <!-- element to draw bpmn diagram in -->
-  <div id="canvas"></div>
-  <div id="contextPad"></div>
-  <div class="btn-group btn-group-sm" id="toolbar">
-      <button id="save-button" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
-      <button id="btnUndo" class="btn btn-default"><i class="fa fa-undo"></i> 撤销</button>
-      <button id="btnRedo" class="btn btn-default"><i class="fa fa-redo"></i> 重做</button>
-  </div>
-  
+    <!-- element to draw bpmn diagram in -->
+    <div id="canvas"></div>
+    <div id="contextPad"></div>
+    <div class="btn-group btn-group-sm" id="toolbar">
+        <button id="save-button" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+        <button id="btnUndo" class="btn btn-default"><i class="fa fa-undo"></i> 撤销</button>
+        <button id="btnRedo" class="btn btn-default"><i class="fa fa-redo"></i> 重做</button>
+    </div>
 
-  <!-- scripts -->
+    <!-- scripts -->
+    <!-- bpmn-js modeler -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="lib/lodash/dist/lodash.min.js"></script>
+    <script src="lib/bpmn-js/dist/bpmn-modeler.js"></script>
+    <!-- application -->
+    <script src="lib/azalea/zh-CN.js"></script>
+    <script src="lib/azalea/PaletteProvider.js"></script>
+    <script src="lib/azalea/azalea-moddle-extension.js"></script>
+    <script src="lib/azalea/azalea-moddle-descriptor.js"></script>
+    <script src="lib/azalea/data-entry.js"></script>
+    <script src="lib/azalea/properties-config.js?123"></script>
+    <script src="lib/azalea/properties-panel.js"></script>
+    <script src="lib/azalea/modeler.js"></script>
+    <div id="PickGroupsDialog" class="modal fade" tabindex="-1" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>-->
+                    <h4 class="modal-title">选择用户组</h4>
+                </div>
+                <div class="modal-body">
+                    <p>dd</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnOK" type="button" class="btn btn-primary">确定</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
 
-  <!-- bpmn-js modeler -->
-  <script src="lib/jquery/dist/jquery.min.js"></script>
-  <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="lib/lodash/dist/lodash.min.js"></script> 
-  <script src="lib/bpmn-js/dist/bpmn-modeler.js"></script>
-
-  <!-- application -->
-  <script src="lib/azalea/zh-CN.js"></script>
-  <script src="lib/azalea/PaletteProvider.js"></script>
-  <script src="lib/azalea/azalea-moddle-extension.js"></script> 
-  <script src="lib/azalea/azalea-moddle-descriptor.js"></script> 
-  <script src="lib/azalea/properties-panel.js"></script> 
-  <script src="lib/azalea/modeler.js"></script>
+            $("#PickGroupsDialog #btnOK").on("click", function () {
+                var entry = propertiesPanel.activeEntry;
+                alert(entry.name);
+            });
+        })
+    </script>
 </body>
 </html>
